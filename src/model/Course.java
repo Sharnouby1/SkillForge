@@ -10,14 +10,16 @@ public class Course {
     private String description;
     private String instructorID;
     private List<Lesson> lessons;
+    private List<Student> students;
 
 
-    public Course(String courseID, String title, String description, String instructorID, List<Lesson> lessons) {
+    public Course(String courseID, String title, String description, String instructorID, List<Lesson> lessons, List<Student> students) {
         this.courseID = courseID;
         this.title = title;
         this.description = description;
         this.instructorID = instructorID;
         this.lessons = lessons;
+        this.students = students;
     }
 
     public void addLesson(Lesson lesson){
@@ -66,5 +68,11 @@ public class Course {
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
+    }
+    public List<Student> getStudents() {
+        return students;
+    }
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 }
