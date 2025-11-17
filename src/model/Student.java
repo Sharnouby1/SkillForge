@@ -36,10 +36,5 @@ public class Student extends User{
         this.progress = progress;
     }
 
-    //Methods
-    public void BrowseCourse(){}
-    public void EnrollCourse(){}
-    public void AccessLesson(){}
-    public void TrackProgress(){}
 
 }
