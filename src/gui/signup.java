@@ -45,54 +45,29 @@ public class signup extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Validator validator = new Validator();
-
-                if (username.getText().isEmpty()) {
+                if(username.getText().equals(""))
+                {
                     JOptionPane.showMessageDialog(null, "Please enter a username");
                 }
-                else if (!validator.validEmail(email.getText())) {
+                else if(!validator.validEmail(email.getText())) {
                     JOptionPane.showMessageDialog(null, "Please enter a valid E-mail");
                 }
-                else if (password.getText().length() < 8) {
-                    JOptionPane.showMessageDialog(null, "Password must be at least 8 characters");
+                else if(password.getText().length() < 8) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid password");
                 }
                 else {
-
-                    UserService us = new UserService();
-
-                    if (!us.StudentsEmailExists(email.getText())) {
-
-                        IdGenerator id = new IdGenerator();
-                        String ids = id.generateStudentID();
-
-                        String hash = null;
-                        try {
-                            hash = PasswordHasher.getHash(password.getText());
-                        } catch (NoSuchAlgorithmException ex) {
-                            throw new RuntimeException(ex);
+                    try {
+                        if (AuthService.LoginForStudent(email.getText(), password.getText())) {
+                            dispose();
+                            new RegisterFrame();
                         }
-                        JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
-
-                        Student s = new Student(
-                                ids,
-                                "student",
-                                username.getText(),
-                                email.getText(),
-                                hash,
-                                null,
-                                "0"
-                        );
-
-                        db.addUser(s);
-                        dispose();
-                        new RegisterFrame();
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Email already exists!");
+                    } catch (NoSuchAlgorithmException ex) {
+                        JOptionPane.showMessageDialog(null, "This email has already been used" );
+                        new signup();
                     }
                 }
             }
         });
-
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
