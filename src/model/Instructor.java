@@ -35,7 +35,7 @@ public class Instructor extends User{
     public void AddLesson(Lesson lesson){}
     public void EditLesson(Lesson lesson){}
     public void RemoveLesson(Lesson lesson){}
-    public void ViewEnrolledStudents(){}
+    public void ViewEnrolledStudents(Course course){}
 
 
 }
