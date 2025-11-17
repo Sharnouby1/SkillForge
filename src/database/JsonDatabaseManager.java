@@ -160,9 +160,9 @@ public class JsonDatabaseManager {
                     obj.getString("courseID"),
                     obj.getString("title"),
                     obj.getString("description"),
-                    obj.getString("instructorID"),
-                    lessons
+                    obj.getString("instructorID")
             );
+            c.setLessons(lessons);
             list.add(c);
         }
         return list;
