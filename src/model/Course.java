@@ -13,13 +13,13 @@ public class Course {
     private List<Student> students;
 
 
-    public Course(String courseID, String title, String description, String instructorID, List<Lesson> lessons, List<Student> students) {
+    public Course(String courseID, String title, String description, String instructorID) {
         this.courseID = courseID;
         this.title = title;
         this.description = description;
         this.instructorID = instructorID;
-        this.lessons = lessons;
-        this.students = students;
+        this.lessons = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
     public void addLesson(Lesson lesson){
@@ -28,6 +28,19 @@ public class Course {
 
     public void removeLesson(Lesson lesson){
         this.lessons.remove(lesson);
+    }
+
+    public void addStudent(Student student){
+        if(student == null){
+            throw new IllegalArgumentException("Student cannot be null");
+        }
+        if(!students.contains(student)){
+            this.students.add(student);
+        }
+    }
+
+    public void removeStudent(Student student){
+        this.students.remove(student);
     }
 
     public String getTitle() {
@@ -63,15 +76,23 @@ public class Course {
     }
 
     public List<Lesson> getLessons() {
+        if(lessons==null){
+            lessons = new ArrayList<>();
+        }
         return lessons;
     }
 
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
     }
+
     public List<Student> getStudents() {
+        if(students==null){
+            students = new ArrayList<>();
+        }
         return students;
     }
+
     public void setStudents(List<Student> students) {
         this.students = students;
     }
