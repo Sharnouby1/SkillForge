@@ -41,33 +41,59 @@ public class signup extends JFrame {
 
             }
         });
-        confirmButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Validator validator = new Validator();
-                if(username.getText().equals(""))
-                {
-                    JOptionPane.showMessageDialog(null, "Please enter a username");
+       confirmButton.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Validator validator = new Validator();
+
+        if (username.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Please enter a username");
+        }
+        else if (!validator.validEmail(email.getText())) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid E-mail");
+        }
+        else if (password.getText().length() < 8) {
+            JOptionPane.showMessageDialog(null, "Password must be at least 8 characters");
+        }
+        else {
+
+            UserService us = new UserService();
+
+            if (!us.StudentsEmailExists(email.getText())) {
+
+                IdGenerator id = new IdGenerator();
+                String ids = id.generateStudentID();
+
+                String hash = null;
+                try {
+                    hash = PasswordHasher.getHash(password.getText());
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new RuntimeException(ex);
                 }
-                else if(!validator.validEmail(email.getText())) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid E-mail");
-                }
-                else if(password.getText().length() < 8) {
-                    JOptionPane.showMessageDialog(null, "Please enter a valid password");
-                }
-                else {
-                    try {
-                        if (AuthService.LoginForStudent(email.getText(), password.getText())) {
-                            dispose();
-                            new RegisterFrame();
-                        }
-                    } catch (NoSuchAlgorithmException ex) {
-                        JOptionPane.showMessageDialog(null, "This email has already been used" );
-                        new signup();
-                    }
-                }
+
+                JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
+
+                Student s = new Student(
+                        ids,
+                        "student",
+                        username.getText(),
+                        email.getText(),
+                        hash,
+                        null,     
+                        "0"      
+                );
+
+                db.addUser(s);
+                dispose();
+                new RegisterFrame();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Email already exists!");
             }
-        });
+        }
+    }
+});
+
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
