@@ -52,7 +52,8 @@ public class Main {
                 "Java Programming",
                 "Learn Java from scratch",
                 "I201",
-                new ArrayList<>(Arrays.asList(l1, l2))
+                new ArrayList<>(Arrays.asList(l1, l2)),
+                new ArrayList<Student>()
         );
 
         db.addCourse(c1);
