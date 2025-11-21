@@ -23,7 +23,7 @@ public class StudentMenu extends JFrame {
         browseCoursesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+new BrowsecoursesPage();
 
             }
         });
