@@ -1,0 +1,11 @@
+[
+  {
+    "userId": "S1001",
+    "role": "student",
+    "username": "Ahmed",
+    "email": "ahmed@example.com",
+    "passwordHash": "abc123",
+    "enrolledCourses": [],
+    "progress": "0"
+  }
+]
