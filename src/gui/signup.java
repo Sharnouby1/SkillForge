@@ -87,6 +87,7 @@ public class signup extends JFrame {
 
                         db.addUser(s);
                         dispose();
+                        JOptionPane.showMessageDialog(null, "Student successfully registered");
                         new RegisterFrame();
 
                     } else {
