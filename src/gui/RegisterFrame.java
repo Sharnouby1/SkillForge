@@ -67,10 +67,13 @@ else if(studentRadioButton.isSelected())
         if(AuthService.LoginForStudent(email.getText(),passwordField1.getText())) {
             dispose();
             JOptionPane.showMessageDialog(null, "Login Successful");
-
             new StudentMenu();
         }
+        else {
+            JOptionPane.showMessageDialog(null, "Wrong Email or Password");
+        }
     } catch (NoSuchAlgorithmException ex) {
+
         throw new RuntimeException(ex);
     }
 }
@@ -81,6 +84,9 @@ else if(studentRadioButton.isSelected())
                             dispose();
                             JOptionPane.showMessageDialog(null, "Login Successful");
                             new StudentMenu();
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(null, "Wrong Email or Password");
                         }
                     } catch (NoSuchAlgorithmException ex) {
                         throw new RuntimeException(ex);

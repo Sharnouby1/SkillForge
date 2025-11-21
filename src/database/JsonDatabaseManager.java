@@ -11,10 +11,12 @@ import java.util.List;
 
 public class JsonDatabaseManager {
 
-    private final String usersFile = "users.json";
-    private final String coursesFile = "courses.json";
+    private  String usersFile = "users.json";
+    private String coursesFile = "courses.json";
 
-    public JsonDatabaseManager(String s, String s1) {
+    public JsonDatabaseManager(String usersFile, String coursesFile) {
+        this.usersFile = usersFile;
+        this.coursesFile = coursesFile;
     }
 
     // ----------------- Utility Methods ---------------------

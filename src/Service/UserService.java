@@ -1,4 +1,5 @@
 package Service;
+
 import requirements.PasswordHasher;
 import model.Student;
 import model.Instructor;
@@ -9,46 +10,56 @@ import java.util.ArrayList;
 public class UserService {
 
     private JsonDatabaseManager db;
-ArrayList<Student> students=db.viewStudents();
-    ArrayList<Instructor> instructors=db.viewInstructors();
 
-    public UserService(JsonDatabaseManager db) {
-          this.db=db;
+    public UserService() {
+        db = new JsonDatabaseManager("users.json", "courses.json");
     }
-public boolean StudentsEmailExists(String email){
-        for(int i=0;i<students.size();i++){
-            if(students.get(i).getEmail().equals(email)) {
-                return true;
-            }
-        }
-        return false;
-}
-public boolean InstructorEmailExists(String email )
-{
-    for(int i=0;i<instructors.size();i++){
-        if(instructors.get(i).getEmail().equals(email)) {
-            return true;
-        }
+
+    private ArrayList<Student> getStudents() {
+        return db.viewStudents();
     }
-return false;
-}
-public boolean StudentPassExists (String password) throws NoSuchAlgorithmException
-{String passhash=PasswordHasher.getHash(password);
-    for(int i=0;i<students.size();i++){
-        if(students.get(i).getPasswordHash().equals(passhash)) {
-            return true;
-        }
+
+    private ArrayList<Instructor> getInstructors() {
+        return db.viewInstructors();
     }
-    return false;
-}
-    public boolean InstructorPassExists (String password) throws NoSuchAlgorithmException
-    {String passhash=PasswordHasher.getHash(password);
-        for(int i=0;i<instructors.size();i++){
-            if(instructors.get(i).getPasswordHash().equals(passhash)) {
+
+    public boolean StudentsEmailExists(String email) {
+        for (Student s : getStudents()) {
+            if (s.getEmail().equalsIgnoreCase(email)) {
                 return true;
             }
         }
         return false;
     }
 
+    public boolean InstructorEmailExists(String email) {
+        for (Instructor i : getInstructors()) {
+            if (i.getEmail().equalsIgnoreCase(email)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean StudentPassExists(String password) throws NoSuchAlgorithmException {
+        String passhash = PasswordHasher.getHash(password);
+
+        for (Student s : getStudents()) {
+            if (s.getPasswordHash().equals(passhash)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean InstructorPassExists(String password) throws NoSuchAlgorithmException {
+        String passhash = PasswordHasher.getHash(password);
+
+        for (Instructor i : getInstructors()) {
+            if (i.getPasswordHash().equals(passhash)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

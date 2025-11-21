@@ -9,7 +9,7 @@ public class Student extends User{
     private String progress; /*------>*/
 
     //Constructor
-    public Student(String userId,  String role, String username, String email, String passwordHash, List<Course> enrolledCourses) {
+    public Student(String userId, String role, String username, String email, String passwordHash, List<Course> enrolledCourses, String progress) {
         this.setUserId(userId);
         this.setRole(role);
         this.setUsername(username);
