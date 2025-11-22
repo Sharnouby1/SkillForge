@@ -8,6 +8,7 @@ import org.json.JSONTokener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class JsonDatabaseManager {
 
@@ -290,5 +291,25 @@ public class JsonDatabaseManager {
         }
 
         writeArray(coursesFile, arr);
+    }
+
+    public Optional<Student> findById(String studentId) {
+        List<Student> students = viewStudents();
+        for (Student student : students) {
+            if (student.getUserId().equals(studentId)) {
+                return Optional.of(student);
+            }
+        }
+        return Optional.empty();
+    }
+
+    public void updateCourse(Course updated) {
+        List<Course> courses = viewCourses();
+        for(int i=0 ; i< courses.size() ; i++){
+            if(courses.get(i).getCourseID().equals(updated.getCourseID())){
+                courses.set(i, updated);
+                break;
+            }
+        }
     }
 }

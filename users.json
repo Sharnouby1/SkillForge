@@ -16,15 +16,19 @@
     },
     {
         "role": "student",
-        "enrolledCourses": [
-            "Maths",
-            "Maths",
-            "Programming"
-        ],
+        "enrolledCourses": ["Maths"],
         "progress": "0%",
         "userId": "S80219",
         "email": "sharnouby@gmail.com",
         "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
         "username": "Sharnouby"
+    },
+    {
+        "role": "instructor",
+        "createdCourses": [],
+        "userId": "I10345",
+        "email": "instructor@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "Instructor"
     }
 ]

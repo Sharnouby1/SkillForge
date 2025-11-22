@@ -89,7 +89,7 @@ public class CourseService{
         if(course == null){
             throw new IllegalArgumentException("Course does not exist");
         }
-        course.removeLesson(lesson);
+        course.removeLesson(lesson.getLessonID(),courseID);
         databaseManager.editCourse(course);
     }
 
