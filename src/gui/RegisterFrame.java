@@ -3,11 +3,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
-
-import Service.AuthService;
-import model.Instructor;
-import model.Student;
-import requirements.*;
+import requirements.Validator;
+import service.AuthService;
 
 public class RegisterFrame extends JFrame {
     private JPanel Container1;

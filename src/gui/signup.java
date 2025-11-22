@@ -4,10 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
-import Service.*;
 import requirements.*;
+import service.*;
 import model.*;
-import database.*;
+import database.JsonDatabaseManager;
+
+
 public class signup extends JFrame {
     private JTextField username;
     private JTextField email;

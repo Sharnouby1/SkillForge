@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import requirements.PasswordHasher;
 import model.Student;

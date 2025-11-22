@@ -2,10 +2,10 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Service.*;
-import requirements.*;
+
+import service.AuthService;
 import model.*;
-import database.*;
+
 public class BrowsecoursesPage extends JFrame {
     private JPanel Courses;
     private JComboBox course;

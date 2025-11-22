@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import database.JsonDatabaseManager;
 import model.Student;
