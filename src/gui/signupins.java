@@ -1,11 +1,10 @@
 package gui;
 
-import Service.UserService;
+import requirements.*;
+import service.UserService;
 import database.JsonDatabaseManager;
 
-import requirements.*;
 import model.*;
-import database.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

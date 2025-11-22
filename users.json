@@ -13,5 +13,18 @@
         "email": "mohamed@gmail.com",
         "passwordHash": "pass456",
         "username": "mohamed"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Maths",
+            "Programming"
+        ],
+        "progress": "0%",
+        "userId": "S80219",
+        "email": "sharnouby@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "Sharnouby"
     }
 ]
