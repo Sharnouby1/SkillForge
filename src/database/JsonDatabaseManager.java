@@ -240,6 +240,45 @@ public class JsonDatabaseManager {
         }
     }
 
+    public void updateCourse(Course updatedCourse) {
+        try {
+            JSONArray coursesArr = readArray(coursesFile);
+
+            for (int i = 0; i < coursesArr.length(); i++) {
+                JSONObject obj = coursesArr.getJSONObject(i);
+
+                if (obj.getString("courseID").equals(updatedCourse.getCourseID())) {
+
+                    obj.put("title", updatedCourse.getTitle());
+                    obj.put("description", updatedCourse.getDescription());
+                    obj.put("instructorID", updatedCourse.getInstructorID());
+
+                    // update lessons
+                    JSONArray lessonsArr = new JSONArray();
+                    if (updatedCourse.getLessons() != null) {
+                        for (Lesson lesson : updatedCourse.getLessons()) {
+                            JSONObject lObj = new JSONObject();
+                            lObj.put("lessonID", lesson.getLessonID());
+                            lObj.put("title", lesson.getTitle());
+                            lObj.put("content", lesson.getContent());
+                            lObj.put("isCompleted", lesson.isCompleted());
+                            lessonsArr.put(lObj);
+                        }
+                    }
+
+                    obj.put("lessons", lessonsArr);
+
+                    break;
+                }
+            }
+
+            writeArray(coursesFile, coursesArr);
+            System.out.println("Course updated successfully!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public ArrayList<Course> viewCourses() {
         JSONArray arr = readArray(coursesFile);
