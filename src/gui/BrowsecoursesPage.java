@@ -2,13 +2,15 @@ package gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.NoSuchAlgorithmException;
-
+import Service.*;
+import requirements.*;
+import model.*;
+import database.*;
 public class BrowsecoursesPage extends JFrame {
     private JPanel Courses;
-    private JComboBox comboBox1;
+    private JComboBox course;
     private JButton backButton;
-    private JButton confirmButton;
+    private JButton EnrollButton;
 
     public BrowsecoursesPage() {
         setContentPane(Courses);
@@ -25,7 +27,33 @@ public class BrowsecoursesPage extends JFrame {
             }
         });
 
-        confirmButton.addActionListener(new ActionListener() {
+        EnrollButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Student s = AuthService.getLoggedStudent();
+
+                if (s == null) {
+                    JOptionPane.showMessageDialog(null, "No logged-in student found!");
+                    return;
+                }
+
+                service.CourseService cs = new service.CourseService();
+                String selectedTitle = course.getSelectedItem().toString();
+
+                Course c = cs.getCourseByTitle(selectedTitle);
+
+                if (c == null) {
+                    JOptionPane.showMessageDialog(null, "Course not found!");
+                    return;
+                }
+
+                cs.enrollStudent(c.getCourseID(), s);
+                JOptionPane.showMessageDialog(null, "Course Enrolled Successfully!");
+            }
+        });
+
+        course.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

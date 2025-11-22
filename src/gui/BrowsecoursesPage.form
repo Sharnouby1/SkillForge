@@ -24,7 +24,7 @@
           <text value="Courses"/>
         </properties>
       </component>
-      <component id="f8347" class="javax.swing.JComboBox" binding="comboBox1" default-binding="true">
+      <component id="f8347" class="javax.swing.JComboBox" binding="course">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -44,7 +44,7 @@
           <text value="Back"/>
         </properties>
       </component>
-      <component id="230a4" class="javax.swing.JButton" binding="confirmButton" default-binding="true">
+      <component id="230a4" class="javax.swing.JButton" binding="EnrollButton">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

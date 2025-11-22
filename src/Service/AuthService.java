@@ -16,6 +16,11 @@ static ArrayList<Student> students=db.viewStudents();
 static ArrayList<Instructor> instructors=db.viewInstructors();
     private final UserService userService;
     private User currentUser;
+    private static Student loggedStudent = null;
+
+
+
+    private static Instructor loggedInstructor = null;
 
     public AuthService(UserService userService) {
         this.userService = userService;
@@ -26,6 +31,7 @@ static ArrayList<Instructor> instructors=db.viewInstructors();
 
         for (Student s : students) {
             if (s.getEmail().equals(email) && s.getPasswordHash().equals(hashpass)) {
+loggedStudent=s;
                 System.out.println("Right Password");
                 return true;
             }
@@ -35,12 +41,14 @@ static ArrayList<Instructor> instructors=db.viewInstructors();
         return false;
     }
 
+
     public static boolean LoginForInstructor(String email, String password) throws NoSuchAlgorithmException {
 
         String hashpass=PasswordHasher.getHash(password);
          for(Instructor i:instructors){
              if(i.getEmail().equals(email) && hashpass.equals(i.getPasswordHash())){
                  System.out.println("Right Password");
+                 loggedInstructor=i;
                  return true;
              }
          }
@@ -49,5 +57,12 @@ static ArrayList<Instructor> instructors=db.viewInstructors();
             return false;
 
 
+    }
+    public static Instructor getLoggedInstructor() {
+        return loggedInstructor;
+    }
+
+    public static Student getLoggedStudent() {
+        return loggedStudent;
     }
     }
