@@ -1,0 +1,20 @@
+[{
+    "description": "Learn Java from scratch",
+    "title": "Java Programming - Updated Edition",
+    "courseID": "C300",
+    "instructorID": "I201",
+    "lessons": [
+        {
+            "lessonID": "L1",
+            "title": "Intro to Java",
+            "content": "Basics of java",
+            "isCompleted": false
+        },
+        {
+            "lessonID": "L2",
+            "title": "OOP Concepts",
+            "content": "Classes, objects...",
+            "isCompleted": false
+        }
+    ]
+}]

@@ -1,0 +1,17 @@
+[
+    {
+        "role": "student",
+        "progress": "0%",
+        "userId": "S101",
+        "email": "ahmed@gmail.com",
+        "passwordHash": "pass123",
+        "username": "ahmed"
+    },
+    {
+        "role": "instructor",
+        "userId": "I201",
+        "email": "mohamed@gmail.com",
+        "passwordHash": "pass456",
+        "username": "mohamed"
+    }
+]
