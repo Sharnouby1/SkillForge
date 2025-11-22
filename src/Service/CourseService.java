@@ -22,7 +22,14 @@ public class CourseService{
         }
         return null;
     }
-
+    public Course getCourseByTitle(String courseTitle){
+        for(Course course : courses){
+            if(course.getTitle().equals(courseTitle)){
+                return course;
+            }
+        }
+        return null;
+    }
     public Course getCourseByID(String courseID){
         for(Course course : courses){
             if(course.getCourseID().equals(courseID)){
@@ -57,7 +64,7 @@ public class CourseService{
         }
         course.addStudent(student);
         student.getEnrolledCourses().add(course);
-        databaseManager.editCourse(course);
+        databaseManager.updateStudent(student);
     }
 
     public List<Student> getEnrolledStudents(String courseID){

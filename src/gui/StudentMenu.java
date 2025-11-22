@@ -23,6 +23,7 @@ public class StudentMenu extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 new BrowsecoursesPage();
+dispose();
 
             }
         });

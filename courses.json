@@ -1,0 +1,42 @@
+[
+    {
+        "description": "Basic mathematics course covering algebra, geometry, and trigonometry.",
+        "title": "Maths",
+        "courseID": "C001",
+        "instructorID": "I001",
+        "lessons": [
+            {
+                "lessonID": "L001",
+                "title": "Introduction to Algebra",
+                "content": "Basics of algebraic expressions and equations.",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L002",
+                "title": "Geometry Basics",
+                "content": "Understanding shapes, angles, and geometric rules.",
+                "isCompleted": false
+            }
+        ]
+    },
+    {
+        "description": "Basic mathematics course covering algebra, geometry, and trigonometry.",
+        "title": "Programming",
+        "courseID": "C004",
+        "instructorID": "I005",
+        "lessons": [
+            {
+                "lessonID": "L003",
+                "title": "Introduction to Algebra",
+                "content": "Basics of algebraic expressions and equations.",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L006",
+                "title": "Geometry Basics",
+                "content": "Understanding shapes, angles, and geometric rules.",
+                "isCompleted": false
+            }
+        ]
+    }
+]

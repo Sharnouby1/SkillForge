@@ -123,23 +123,55 @@ public class JsonDatabaseManager {
         arr.put(obj);
         writeArray(usersFile, arr);
     }
-    public void addUser(User user) {
-        JSONArray arr = readArray(usersFile);
+    public void addUser(Student student) {
+        try {
+            File file = new File(usersFile);
 
-        JSONObject obj = new JSONObject();
-        obj.put("userId", user.getUserId());
-        obj.put("role", user.getRole());
-        obj.put("username", user.getUsername());
-        obj.put("email", user.getEmail());
-        obj.put("passwordHash", user.getPasswordHash());
+            // Create file if it doesn't exist
+            if (!file.exists()) {
+                file.createNewFile();
+                FileWriter fw = new FileWriter(file);
+                fw.write("[]");
+                fw.close();
+            }
 
-        if (user instanceof Student s) {
-            obj.put("progress", s.getProgress());
+            // Read existing users
+            JSONArray usersArray = readArray(usersFile);
+
+            // Create JSON object for this student
+            JSONObject obj = new JSONObject();
+            obj.put("userId", student.getUserId());
+            obj.put("role", "student");
+            obj.put("username", student.getUsername());
+            obj.put("email", student.getEmail());
+            obj.put("passwordHash", student.getPasswordHash());
+
+            // Convert enrolled courses into JSON array
+            JSONArray enrolled = new JSONArray();
+            if (student.getEnrolledCourses() != null) {
+                for (Course c : student.getEnrolledCourses()) {
+                    enrolled.put(c.getCourseID());  // save only ID
+                }
+            }
+            obj.put("enrolledCourses", enrolled);
+
+            obj.put("progress", student.getProgress());
+
+            // Add to array
+            usersArray.put(obj);
+
+            // Write back to file
+            FileWriter fw = new FileWriter(usersFile);
+            fw.write(usersArray.toString(4));  // formatted output
+            fw.close();
+
+            System.out.println("Student added successfully!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        arr.put(obj);
-        writeArray(usersFile, arr);
     }
+
 
     // ------------------- COURSE METHODS -----------------------
 
@@ -166,6 +198,48 @@ public class JsonDatabaseManager {
 
         return obj;
     }
+    public void updateStudent(Student updatedStudent) {
+        try {
+            JSONArray usersArr = readArray(usersFile);
+
+            for (int i = 0; i < usersArr.length(); i++) {
+                JSONObject obj = usersArr.getJSONObject(i);
+
+                if (obj.getString("userId").equals(updatedStudent.getUserId())) {
+
+                    // Update fields
+                    obj.put("username", updatedStudent.getUsername());
+                    obj.put("email", updatedStudent.getEmail());
+                    obj.put("passwordHash", updatedStudent.getPasswordHash());
+                    obj.put("progress", updatedStudent.getProgress());
+                    obj.put("role", "student");
+
+                    // Update enrolled courses list
+                    JSONArray enrolled = new JSONArray();
+                    if (updatedStudent.getEnrolledCourses() != null) {
+                        for (Course c : updatedStudent.getEnrolledCourses()) {
+                            enrolled.put(c.getTitle());
+                        }
+                    }
+
+                    obj.put("enrolledCourses", enrolled);
+
+                    break;
+                }
+            }
+
+            // Write back
+            FileWriter fw = new FileWriter(usersFile);
+            fw.write(usersArr.toString(4));
+            fw.close();
+
+            System.out.println("Student updated!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<Course> viewCourses() {
         JSONArray arr = readArray(coursesFile);

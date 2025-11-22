@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 import Service.AuthService;
 import model.Instructor;
+import model.Student;
 import requirements.*;
 
 public class RegisterFrame extends JFrame {
@@ -66,6 +67,7 @@ else if(studentRadioButton.isSelected())
 {
     try {
         if(AuthService.LoginForStudent(email.getText(),passwordField1.getText())) {
+
             dispose();
             JOptionPane.showMessageDialog(null, "Login Successful");
             new StudentMenu();
@@ -84,7 +86,7 @@ else if(studentRadioButton.isSelected())
                         if(AuthService.LoginForInstructor(email.getText(),passwordField1.getText())) {
                             dispose();
                             JOptionPane.showMessageDialog(null, "Login Successful");
-                            //new InstructorMenu();
+                            new StudentMenu();
                         }
                         else {
                             JOptionPane.showMessageDialog(null, "Wrong Email or Password");
