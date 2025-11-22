@@ -1,0 +1,88 @@
+[
+    {
+        "role": "student",
+        "progress": "0%",
+        "userId": "S31138",
+        "email": "dff@ht.com",
+        "passwordHash": "57e15fe00410cff1ae01fa67f77677bcd02e094a5feb03cd7d238cbeeee4f759",
+        "username": "fgsfgsfg"
+    },
+    {
+        "role": "student",
+        "progress": "0%",
+        "userId": "S42538",
+        "email": "bddf@bf.com",
+        "passwordHash": "1cd56c711820b1fd45a102457d55c3c237f93b9fe67da7f1695222956773ea9b",
+        "username": "ghghgfnn"
+    },
+    {
+        "role": "student",
+        "progress": "0%",
+        "userId": "S3056",
+        "email": "ahmed@gmail.com",
+        "passwordHash": "6a6f3055e968f3568e00923a54c5f7280da7b0e1370cb1e0e7c353f2d2ddbf5c",
+        "username": "ahmedwael"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": ["Maths"],
+        "progress": "0%",
+        "userId": "S51449",
+        "email": "masry@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "masry"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Programming"
+        ],
+        "progress": "0%",
+        "userId": "S31701",
+        "email": "e@j.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "masry"
+    },
+    {
+        "role": "instructor",
+        "createdCourses": [],
+        "userId": "I69731",
+        "email": "a@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "aa"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": ["C001"],
+        "progress": "0%",
+        "userId": "S19568",
+        "email": "a@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "ahmed"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Programming"
+        ],
+        "progress": "0%",
+        "userId": "S71094",
+        "email": "b@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "b"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Programming"
+        ],
+        "progress": "0%",
+        "userId": "S19434",
+        "email": "ab@ab.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "aa"
+    }
+]
