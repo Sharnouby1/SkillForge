@@ -1,24 +1,29 @@
 package gui;
 
+import Service.UserService;
+import database.JsonDatabaseManager;
+
+import requirements.*;
+import model.*;
+import database.*;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
-import Service.*;
-import requirements.*;
-import model.*;
-import database.*;
-public class signup extends JFrame {
+
+public class signupins extends JFrame {
+
     private JTextField username;
     private JTextField email;
     private JTextField password;
-    private JButton confirmButton;
-    private JPanel Container1;
     private JButton returnButton;
+    private JButton confirmButton;
+    private JPanel container1;
 
-    public signup() {
+    public signupins() {
         setTitle("Welcome");
-        setContentPane(Container1);
+        setContentPane(container1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(250,250);
         setLocationRelativeTo(null);
@@ -65,7 +70,7 @@ public class signup extends JFrame {
 
                         IdGenerator id = new IdGenerator();
                         String ids = id.generateStudentID();
-
+                        String idi=id.generateInstructorID();
                         String hash = null;
                         try {
                             hash = PasswordHasher.getHash(password.getText());
@@ -76,19 +81,11 @@ public class signup extends JFrame {
                         JsonDatabaseManager db = new JsonDatabaseManager("users.json", "courses.json");
 
 
-                        Student s = new Student(
-                                ids,
-                                "student",
-                                username.getText(),
-                                email.getText(),
-                                hash,
-                                null,     // ← zero enrolled courses
-                                "0"      // ← zero progress
-                        );
+                       Instructor i=new Instructor(idi,"instructor",username.getText(), email.getText(), hash,null);
 
-                        db.addUser(s);
+                        db.addInstructor(i);
                         dispose();
-                        JOptionPane.showMessageDialog(null, "Student successfully registered");
+                        JOptionPane.showMessageDialog(null, "Instructor successfully registered");
                         new RegisterFrame();
 
                     } else {
@@ -107,3 +104,5 @@ public class signup extends JFrame {
         });
     }
 }
+
+

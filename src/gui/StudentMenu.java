@@ -7,8 +7,7 @@ import java.awt.event.ActionListener;
 public class StudentMenu extends JFrame {
     private JPanel Container2;
     private JButton browseCoursesButton;
-    private JButton enrollInCourseButton;
-    private JButton accessLessonButton;
+    private JButton accessCourseButton;
     private JButton trackProgressButton;
     private JLabel StudentText;
 

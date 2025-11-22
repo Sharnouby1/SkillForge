@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
 
 import Service.AuthService;
+import model.Instructor;
 import requirements.*;
 
 public class RegisterFrame extends JFrame {
@@ -83,7 +84,7 @@ else if(studentRadioButton.isSelected())
                         if(AuthService.LoginForInstructor(email.getText(),passwordField1.getText())) {
                             dispose();
                             JOptionPane.showMessageDialog(null, "Login Successful");
-                            new StudentMenu();
+                            //new InstructorMenu();
                         }
                         else {
                             JOptionPane.showMessageDialog(null, "Wrong Email or Password");
@@ -106,8 +107,17 @@ else if(studentRadioButton.isSelected())
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-dispose();
-                new signup();
+                if(studentRadioButton.isSelected()==false && instructorRadioButton.isSelected()==false )
+                    JOptionPane.showMessageDialog(null, "Please Choose Student Or Instructor To Sign Up");
+                    else if(studentRadioButton.isSelected())
+                    {
+                        dispose();
+                        new signup();
+                    } else if (instructorRadioButton.isSelected()) {
+
+                    dispose();
+                    new signupins();
+                }
             }
         });
     }

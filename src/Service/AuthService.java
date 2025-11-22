@@ -38,31 +38,16 @@ static ArrayList<Instructor> instructors=db.viewInstructors();
     public static boolean LoginForInstructor(String email, String password) throws NoSuchAlgorithmException {
 
         String hashpass=PasswordHasher.getHash(password);
-        int flage=0;
-        for(int i=0;i<instructors.size();i++) {
-            if (!(instructors.get(i).getEmail().equals(email))) {
-                flage = 1;
-                break;
-            }
-        }
-        int flagp =0;
-        for (int j=0;j<instructors.size();j++)
-        {
-            if(instructors.get(j).getPasswordHash().equals(hashpass)){
-                flagp =1;
-                break;
-            }
-        }
-        if(flage==1 && flagp==1) {
-            System.out.println("Right Password");
-            return true;
-
-        }
-        else{
+         for(Instructor i:instructors){
+             if(i.getEmail().equals(email) && hashpass.equals(i.getPasswordHash())){
+                 System.out.println("Right Password");
+                 return true;
+             }
+         }
 
             System.out.println("Wrong Password");
             return false;
-        }
-//
+
+
     }
     }

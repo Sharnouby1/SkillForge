@@ -95,7 +95,34 @@ public class JsonDatabaseManager {
         }
         return list;
     }
+    public void addInstructor(Instructor instructor) {
+        JSONArray arr = readArray(usersFile);
 
+        JSONObject obj = new JSONObject();
+        obj.put("userId", instructor.getUserId());
+        obj.put("role", instructor.getRole());
+        obj.put("username", instructor.getUsername());
+        obj.put("email", instructor.getEmail());
+        obj.put("passwordHash", instructor.getPasswordHash());
+
+        // Extra field: createdCourses
+        JSONArray coursesArr = new JSONArray();
+        if (instructor.getCreatedCourses() != null) {
+            for (Course c : instructor.getCreatedCourses()) {
+                JSONObject cObj = new JSONObject();
+                cObj.put("courseID", c.getCourseID());
+                cObj.put("title", c.getTitle());
+                cObj.put("description", c.getDescription());
+                cObj.put("instructorID", c.getInstructorID());
+                coursesArr.put(cObj);
+            }
+        }
+
+        obj.put("createdCourses", coursesArr);
+
+        arr.put(obj);
+        writeArray(usersFile, arr);
+    }
     public void addUser(User user) {
         JSONArray arr = readArray(usersFile);
 
