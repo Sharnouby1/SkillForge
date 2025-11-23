@@ -251,6 +251,81 @@ public class JsonDatabaseManager {
 
         return obj;
     }
+    public void recordQuizAttempt(String studentId, String lessonId, Quiz quiz, QuizResult result) {
+        try {
+            // قراءة كل الطلاب من JSON
+            JSONArray usersArr = readArray(usersFile);
+
+            for (int i = 0; i < usersArr.length(); i++) {
+                JSONObject studentObj = usersArr.getJSONObject(i);
+
+                if (studentObj.getString("userId").equals(studentId) &&
+                        studentObj.getString("role").equalsIgnoreCase("student")) {
+
+                    // الحصول على المحاولات السابقة
+                    JSONObject quizAttemptsObj = studentObj.optJSONObject("quizAttempts");
+                    if (quizAttemptsObj == null) {
+                        quizAttemptsObj = new JSONObject();
+                    }
+
+                    JSONArray attemptsArr = quizAttemptsObj.optJSONArray(lessonId);
+                    if (attemptsArr == null) {
+                        attemptsArr = new JSONArray();
+                    }
+
+                    // التحقق من الحد الأقصى للمحاولات
+                    if (attemptsArr.length() >= quiz.getMaxAttempts()) {
+                        throw new IllegalStateException("تم الوصول للحد الأقصى للمحاولات");
+                    }
+
+                    // إنشاء JSONObject للمحاولة الجديدة
+                    JSONObject attemptObj = new JSONObject();
+                    attemptObj.put("quizId", result.getQuizId());
+                    attemptObj.put("score", result.getScore());
+                    attemptObj.put("totalQuestions", result.getTotalQuestions());
+                    attemptObj.put("percentage", result.getPercentage());
+                    attemptObj.put("passed", result.isPassed());
+                    attemptObj.put("attemptedAt", result.getAttemptedAt().toString());
+
+                    // إضافة نتائج الأسئلة
+                    JSONArray qResultsArr = new JSONArray();
+                    if (result.getQuestionResults() != null) {
+                        for (QuestionResult qr : result.getQuestionResults()) {
+                            JSONObject qrObj = new JSONObject();
+
+                            // هنا يجب التأكد أن QuestionResult و Question معرفان كـ public
+                            qrObj.put("questionId", qr.getQuestion().getQuestionId());
+                            qrObj.put("userAnswer", qr.getUserAnswer());
+                            qrObj.put("correct", qr.isCorrect());
+
+                            qResultsArr.put(qrObj);
+                        }
+                    }
+
+                    attemptObj.put("questionResults", qResultsArr);
+
+                    // إضافة المحاولة الجديدة للمصفوفة
+                    attemptsArr.put(attemptObj);
+                    quizAttemptsObj.put(lessonId, attemptsArr);
+                    studentObj.put("quizAttempts", quizAttemptsObj);
+
+                    // كتابة التحديث إلى JSON
+                    writeArray(usersFile, usersArr);
+
+                    System.out.println("تم تسجيل المحاولة بنجاح!");
+                    break;
+                }
+            }
+
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
     public void updateStudent(Student updatedStudent) {
         try {
             JSONArray usersArr = readArray(usersFile);
