@@ -8,15 +8,13 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="93ddb" class="javax.swing.JLabel">
+      <component id="93ddb" class="javax.swing.JPanel" binding="mainPanel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties>
-          <text value="Pending Courses"/>
-        </properties>
+        <properties/>
       </component>
-      <component id="d66aa" class="javax.swing.JComboBox" binding="PendingCourses">
+      <component id="d66aa" class="javax.swing.JComboBox" binding="coursesCombo">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -46,7 +44,7 @@
           <text value="Descritpion"/>
         </properties>
       </component>
-      <component id="61e4c" class="javax.swing.JTextArea" binding="descritpion">
+      <component id="61e4c" class="javax.swing.JTextArea" binding="description">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
@@ -76,12 +74,12 @@
           <text value="Decline"/>
         </properties>
       </component>
-      <component id="b5bf3" class="javax.swing.JButton" binding="backButton" default-binding="true">
+      <component id="b5bf3" class="javax.swing.JButton" binding="logoutButton">
         <constraints>
           <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Back"/>
+          <text value="Logout"/>
         </properties>
       </component>
       <component id="2b1cd" class="javax.swing.JButton" binding="approveButton" default-binding="true">

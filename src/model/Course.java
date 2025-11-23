@@ -14,6 +14,9 @@ public class Course {
     private String instructorID;
     private List<Lesson> lessons;
     private List<Student> students;
+    private boolean pending;
+    private boolean approved;
+    private boolean rejected;
 
 
     public Course(String courseID, String title, String description, String instructorID) {
@@ -23,6 +26,9 @@ public class Course {
         this.instructorID = instructorID;
         this.lessons = new ArrayList<>();
         this.students = new ArrayList<>();
+        this.pending = false;
+        this.approved = false;
+        this.rejected = false;
     }
 
     public void addLesson(Lesson lesson){
@@ -101,4 +107,17 @@ public class Course {
     public void setStudents(List<Student> students) {
         this.students = students;
     }
+
+    public void setPending(boolean pending) {
+        this.pending = pending;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public void setRejected(boolean rejected) {
+        this.rejected = rejected;
+    }
+
 }
