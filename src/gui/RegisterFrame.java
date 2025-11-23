@@ -110,7 +110,7 @@ else if(studentRadioButton.isSelected())
                             JOptionPane.showMessageDialog(null, "Login Successful");
                             JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
                             UserService us = new UserService();
-                            new AdminDashboard(db,AuthService.getLoggedAdmin());
+                            new AdminDashboard();
                         }
                         else {
                             JOptionPane.showMessageDialog(null, "Wrong Email or Password");
