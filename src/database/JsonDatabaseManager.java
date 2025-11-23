@@ -22,7 +22,7 @@ public class JsonDatabaseManager {
 
     // ----------------- Utility Methods ---------------------
 
-    private JSONArray readArray(String file) {
+    private static JSONArray readArray(String file) {
         try {
             File f = new File(file);
             if (!f.exists()) {
@@ -124,6 +124,34 @@ public class JsonDatabaseManager {
         arr.put(obj);
         writeArray(usersFile, arr);
     }
+    public static boolean isStudentEnrolledInCourse(String studentId, String courseTitle) {
+        JSONArray usersArr = readArray("users.json");
+
+        for (int i = 0; i < usersArr.length(); i++) {
+            JSONObject obj = usersArr.getJSONObject(i);
+
+            // Match student
+            if (obj.getString("userId").equals(studentId)
+                    && obj.getString("role").equalsIgnoreCase("student")) {
+
+                // Get enrolled courses array
+                JSONArray enrolledCourses = obj.optJSONArray("enrolledCourses");
+                if (enrolledCourses == null) return false;
+
+                // Check if the title exists
+                for (int j = 0; j < enrolledCourses.length(); j++) {
+                    String enrolledTitle = enrolledCourses.getString(j);
+                    if (enrolledTitle.equalsIgnoreCase(courseTitle)) {
+                        return true;  // student IS enrolled
+                    }
+                }
+            }
+        }
+
+        return false; // not found
+    }
+
+
     public void addUser(Student student) {
         try {
             File file = new File(usersFile);
@@ -240,8 +268,25 @@ public class JsonDatabaseManager {
             e.printStackTrace();
         }
     }
+    public List<String> getEnrolledCourseTitles(String studentId) {
+        List<String> titles = new ArrayList<>();
+        JSONArray arr = readArray(usersFile);
 
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
 
+            if (obj.getString("userId").equals(studentId)) {
+                JSONArray enrolled = obj.optJSONArray("enrolledCourses");
+                if (enrolled != null) {
+                    for (int j = 0; j < enrolled.length(); j++) {
+                        titles.add(enrolled.getString(j));
+                    }
+                }
+                break;
+            }
+        }
+        return titles;
+    }
     public ArrayList<Course> viewCourses() {
         JSONArray arr = readArray(coursesFile);
         ArrayList<Course> list = new ArrayList<>();

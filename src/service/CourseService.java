@@ -65,6 +65,7 @@ public class CourseService{
         course.addStudent(student);
         student.getEnrolledCourses().add(course);
         databaseManager.updateStudent(student);
+        databaseManager.editCourse(course);
     }
 
     public List<Student> getEnrolledStudents(String courseID){
