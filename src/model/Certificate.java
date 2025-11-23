@@ -1,8 +1,12 @@
 package model;
 
+import model.Course;
+import model.Student;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 
 // Certificate.java
 public class Certificate {
@@ -44,24 +48,27 @@ class CertificateGenerator {
 
         return certificate;
     }
+    public void test() {
+        Map<String, Object> certData = new LinkedHashMap<>();
+        System.out.println("It works!");
+    }
 
     private String generatePDFCertificate(Certificate cert, Student student, Course course) {
-        // This would generate an actual PDF file
-        // For now, return a placeholder URL
         return "/certificates/" + cert.getCertificateId() + ".pdf";
     }
 
-    public String generateJSONCertificate(Certificate cert, Student student, Course course) {
-        Map<String, Object> certData = new HashMap<>();
+    public Map<String, Object> generateCertificateData(Certificate cert, Student student, Course course) {
+        Map<String, Object> certData = new LinkedHashMap<>();
         certData.put("certificateId", cert.getCertificateId());
         certData.put("studentName", student.getUsername());
         certData.put("studentId", student.getUserId());
         certData.put("courseTitle", course.getTitle());
         certData.put("courseId", course.getCourseID());
-        certData.put("issueDate", cert.getIssueDate().toString());
-        certData.put("instructor", "Instructor Name"); // You'd fetch this
+        certData.put("issueDate", cert.getIssueDate());
+        certData.put("instructor", "Instructor Name");
 
-        // Convert to JSON string
-        return new Gson().toJson(certData);
+        return certData;
     }
+
+
 }
