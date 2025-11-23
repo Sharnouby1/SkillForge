@@ -63,4 +63,13 @@ public class UserService {
         }
         return false;
     }
+
+    public Instructor getInstructor(String email) throws NoSuchAlgorithmException {
+        for (Instructor i : getInstructors()) {
+            if (i.getEmail().equalsIgnoreCase(email)) {
+                return i;
+            }
+        }
+        return null;
+    }
 }

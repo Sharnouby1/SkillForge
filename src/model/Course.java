@@ -1,5 +1,8 @@
 package model;
 
+import service.CourseService;
+import service.LessonService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +29,10 @@ public class Course {
         this.lessons.add(lesson);
     }
 
-    public void removeLesson(Lesson lesson){
-        this.lessons.remove(lesson);
+    public void removeLesson(String lessonID,String courseID){
+        CourseService courseService = new CourseService();
+        LessonService lessonService = new LessonService(courseService);
+        this.lessons.remove(lessonService.getLesson(lessonID,courseID));
     }
 
     public void addStudent(Student student){

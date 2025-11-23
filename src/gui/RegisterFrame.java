@@ -3,8 +3,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
+
+import database.JsonDatabaseManager;
 import requirements.Validator;
 import service.AuthService;
+import service.UserService;
+
 
 public class RegisterFrame extends JFrame {
     private JPanel Container1;
@@ -83,7 +87,9 @@ else if(studentRadioButton.isSelected())
                         if(AuthService.LoginForInstructor(email.getText(),passwordField1.getText())) {
                             dispose();
                             JOptionPane.showMessageDialog(null, "Login Successful");
-                            new StudentMenu();
+                            JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
+                            UserService us = new UserService();
+                            new InstructorFrame(db, us.getInstructor(email.getText()));
                         }
                         else {
                             JOptionPane.showMessageDialog(null, "Wrong Email or Password");
