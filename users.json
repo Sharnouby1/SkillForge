@@ -43,5 +43,17 @@
         "email": "a@gmail.com",
         "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
         "username": "ahmed"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Programming"
+        ],
+        "progress": "0%",
+        "userId": "S28149",
+        "email": "q@g.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "q"
     }
 ]

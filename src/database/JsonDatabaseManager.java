@@ -268,6 +268,25 @@ public class JsonDatabaseManager {
             e.printStackTrace();
         }
     }
+    public List<String> getEnrolledCourseTitles(String studentId) {
+        List<String> titles = new ArrayList<>();
+        JSONArray arr = readArray(usersFile);
+
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
+
+            if (obj.getString("userId").equals(studentId)) {
+                JSONArray enrolled = obj.optJSONArray("enrolledCourses");
+                if (enrolled != null) {
+                    for (int j = 0; j < enrolled.length(); j++) {
+                        titles.add(enrolled.getString(j));
+                    }
+                }
+                break;
+            }
+        }
+        return titles;
+    }
     public ArrayList<Course> viewCourses() {
         JSONArray arr = readArray(coursesFile);
         ArrayList<Course> list = new ArrayList<>();
