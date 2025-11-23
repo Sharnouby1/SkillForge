@@ -18,6 +18,7 @@ public class RegisterFrame extends JFrame {
     private JButton loginButton;
     private JPasswordField passwordField1;
     private JTextField email;
+    private JRadioButton adminRadioButton;
 
     public RegisterFrame() {
         setTitle("Welcome");
@@ -40,6 +41,8 @@ public class RegisterFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(studentRadioButton.isSelected()) {
                     instructorRadioButton.setSelected(false);
+                    adminRadioButton.setSelected(false);
+
                 }
             }
         });
@@ -48,6 +51,7 @@ public class RegisterFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(instructorRadioButton.isSelected()) {
                     studentRadioButton.setSelected(false);
+                    adminRadioButton.setSelected(false);
                 }
             }
         });
@@ -61,8 +65,8 @@ public class RegisterFrame extends JFrame {
                else if(passwordField1.getText().length() < 8) {
                     JOptionPane.showMessageDialog(null, "Please enter a valid password");
                 }
-else if(studentRadioButton.isSelected()==false && instructorRadioButton.isSelected()==false ) {
-                JOptionPane.showMessageDialog(null, "Please Choose Student or Instructor");
+else if(studentRadioButton.isSelected()==false && instructorRadioButton.isSelected()==false && adminRadioButton.isSelected()==false ) {
+                JOptionPane.showMessageDialog(null, "Please Choose Student or Instructor or Admin");
 }
 else if(studentRadioButton.isSelected())
 {
@@ -98,6 +102,23 @@ else if(studentRadioButton.isSelected())
                         throw new RuntimeException(ex);
                     }
                 }
+               else if(adminRadioButton.isSelected())
+                {
+                    try {
+                        if(AuthService.LoginForAdmin(email.getText(),passwordField1.getText())) {
+                            dispose();
+                            JOptionPane.showMessageDialog(null, "Login Successful");
+                            JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
+                            UserService us = new UserService();
+                            new AdminDashboard(db,AuthService.getLoggedAdmin());
+                        }
+                        else {
+                            JOptionPane.showMessageDialog(null, "Wrong Email or Password");
+                        }
+                    } catch (NoSuchAlgorithmException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
                 else {
                     JOptionPane.showMessageDialog(null, "Wrong Email or Password");
                 }
@@ -122,6 +143,16 @@ else if(studentRadioButton.isSelected())
 
                     dispose();
                     new signupins();
+                }
+            }
+        });
+        adminRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(adminRadioButton.isSelected())
+                {
+                    studentRadioButton.setSelected(false);
+                    instructorRadioButton.setSelected(false);
                 }
             }
         });

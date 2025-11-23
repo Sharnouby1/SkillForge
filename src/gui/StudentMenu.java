@@ -31,6 +31,7 @@ dispose();
             @Override
             public void actionPerformed(ActionEvent e) {
 new AccessCourse();
+dispose();
             }
         });
     }

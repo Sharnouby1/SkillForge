@@ -55,5 +55,40 @@
         "email": "q@g.com",
         "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
         "username": "q"
+    },
+    {
+        "role": "admin",
+        "userId": "A001",
+        "email": "admin@example.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "admin"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Course1",
+            "Course2"
+        ],
+        "progress": "0%",
+        "userId": "S001",
+        "email": "student1@example.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "student1"
+    },
+    {
+        "role": "admin",
+        "userId": "I001",
+        "email": "instructor1@example.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "instructor1"
+    },
+    {
+        "role": "admin",
+        "enrolledCourses": [],
+        "progress": "0%",
+        "userId": "S37724",
+        "email": "z@z.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "a"
     }
 ]
