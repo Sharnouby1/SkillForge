@@ -9,6 +9,17 @@ public abstract class User {
     private String email;
     private String passwordHash;
 
+    public User(String userId, String role, String username, String email, String passwordHash) {
+        this.userId = userId;
+        this.role = role;
+        this.username = username;
+        this.email = email;
+        this.passwordHash = passwordHash;
+    }
+
+    protected User() {
+    }
+
     //Getters and Setters
     public String getUserId() {
         return userId;

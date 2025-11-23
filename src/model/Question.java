@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 
 public class Question {
     private String questionId;
@@ -11,7 +12,7 @@ public class Question {
     private boolean isCorrect;
 
     public Question(String questionText, String []answers, String correctAnswer) {
-        this.questionId = generateQuestionId();
+        this.questionId = genereateQuestionId();
         this.answers = answers;
         this.correctAnswer = correctAnswer;
         this.questionText = questionText;
@@ -40,7 +41,7 @@ public class Question {
         isCorrect = studentAnswer.equalsIgnoreCase(correctAnswer);
     }
 
-    private String generateQuestionId(){
+    private String genereateQuestionId(){
         int number = (int)(Math.random() * 10000);
         return String.format("Q%04d", number);
     }

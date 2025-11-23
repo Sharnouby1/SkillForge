@@ -1,6 +1,7 @@
 package model;
 
 import database.JsonDatabaseManager;
+import service.CourseAnalytics;
 import service.LessonProgress;
 
 import java.util.ArrayList;
@@ -14,9 +15,6 @@ public class AnalyticsManager {
         this.db = db;
     }
 
-    // ======================================================
-    // 1) RECORD LESSON COMPLETION (LISTS ONLY)
-    // ======================================================
     public void recordLessonCompletion(String studentId, String courseId, String lessonId) {
 
         Student student = findStudent(studentId);
@@ -25,11 +23,10 @@ public class AnalyticsManager {
 
         if (student == null || course == null || lesson == null) return;
 
-        // Ensure student has a progress list
         List<LessonProgress> progressList = student.getLessonProgress();
         if (progressList == null) {
             progressList = new ArrayList<>();
-            student.setLessonProgress(progressList);
+            student.setLessonProgressList(progressList);
         }
 
         LessonProgress progress = findLessonProgress(progressList, lessonId);
@@ -41,14 +38,10 @@ public class AnalyticsManager {
             progress.setCompleted(true);
         }
 
-        // Update lesson analytics (count)
         lesson.setCompletedCount(lesson.getCompletedCount() + 1);
 
     }
 
-    // ======================================================
-    // 2) RECORD QUIZ RESULT
-    // ======================================================
     public void recordQuizResult(String studentId, String courseId, String lessonId, double score) {
 
         Student student = findStudent(studentId);
@@ -60,7 +53,7 @@ public class AnalyticsManager {
         List<LessonProgress> progressList = student.getLessonProgress();
         if (progressList == null) {
             progressList = new ArrayList<>();
-            student.setLessonProgress(progressList);
+            student.setLessonProgressList(progressList);
         }
 
         LessonProgress progress = findLessonProgress(progressList, lessonId);
@@ -86,9 +79,6 @@ public class AnalyticsManager {
         db.saveCourses();
     }
 
-    // ======================================================
-    // 3) COURSE STATISTICS
-    // ======================================================
     public CourseAnalytics getCourseAnalytics(String courseId) {
 
         Course course = findCourse(courseId);
@@ -101,18 +91,11 @@ public class AnalyticsManager {
             totalCompletions += lesson.getCompletedCount();
         }
 
-        return new CourseAnalytics(courseId, totalLessons, totalCompletions);
+        return new CourseAnalytics();
     }
 
-    // ======================================================
-    // HELPERS
-    // ======================================================
     private Student findStudent(String id) {
-        for (User u : db.viewUsers()) {
-            if (u instanceof Student && u.getUserId().equals(id)) {
-                return (Student) u;
-            }
-        }
+
         return null;
     }
 
