@@ -30,5 +30,18 @@
         "email": "instructor@gmail.com",
         "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
         "username": "Instructor"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": [
+            "Maths",
+            "Programming",
+            "Math 2"
+        ],
+        "progress": "0%",
+        "userId": "S86531",
+        "email": "a@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "ahmed"
     }
 ]

@@ -55,9 +55,14 @@ public class BrowsecoursesPage extends JFrame {
                     JOptionPane.showMessageDialog(null, "Course not found!");
                     return;
                 }
-
-                cs.enrollStudent(c.getCourseID(), s);
-                JOptionPane.showMessageDialog(null, "Course Enrolled Successfully!");
+if(!JsonDatabaseManager.isStudentEnrolledInCourse(s.getUserId(),course.getSelectedItem().toString() )) {
+    cs.enrollStudent(c.getCourseID(), s);
+    JOptionPane.showMessageDialog(null, "Course Enrolled Successfully!");
+}
+            else
+{
+    JOptionPane.showMessageDialog(null, "Course Already Enrolled Before!");
+}
             }
         });
 
