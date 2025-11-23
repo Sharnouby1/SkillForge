@@ -4,7 +4,7 @@ import database.JsonDatabaseManager;
 import model.Student;
 import model.User;
 import java.util.ArrayList;
-import model.Instructor;
+import model.*;
 import requirements.PasswordHasher;
 
 import java.security.NoSuchAlgorithmException;
@@ -14,17 +14,19 @@ public class AuthService extends User{
 
 static ArrayList<Student> students=db.viewStudents();
 static ArrayList<Instructor> instructors=db.viewInstructors();
+static ArrayList<Admin> admins=db.viewAdmins();
+
     private final UserService userService;
     private User currentUser;
     private static Student loggedStudent = null;
-
-
-
     private static Instructor loggedInstructor = null;
+    private static Admin loggedAdmin = null;
+
 
     public AuthService(UserService userService) {
         this.userService = userService;
     }
+
     public static boolean LoginForStudent(String email, String password) throws NoSuchAlgorithmException {
 
         String hashpass = PasswordHasher.getHash(password);
@@ -58,6 +60,20 @@ loggedStudent=s;
 
 
     }
+    public static boolean LoginForAdmin(String email, String password) throws NoSuchAlgorithmException {
+
+        String hashpass=PasswordHasher.getHash(password);
+        for(Admin i:admins){
+            if(i.getEmail().equals(email) && hashpass.equals(i.getPasswordHash())){
+                System.out.println("Right Password");
+                loggedAdmin=i;
+                return true;
+            }
+        }
+
+        System.out.println("Wrong Password");
+        return false;
+    }
     public static Instructor getLoggedInstructor() {
         return loggedInstructor;
     }
@@ -65,4 +81,6 @@ loggedStudent=s;
     public static Student getLoggedStudent() {
         return loggedStudent;
     }
-    }
+
+    public static Admin getLoggedAdmin() {return loggedAdmin;}
+}
