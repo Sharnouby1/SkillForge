@@ -16,7 +16,10 @@
     },
     {
         "role": "student",
-        "enrolledCourses": ["Maths"],
+        "enrolledCourses": [
+            "Math 2",
+            "Math 2"
+        ],
         "progress": "0%",
         "userId": "S80219",
         "email": "sharnouby@gmail.com",
