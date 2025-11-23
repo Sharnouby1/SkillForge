@@ -3,6 +3,7 @@ package service;
 import requirements.PasswordHasher;
 import model.Student;
 import model.Instructor;
+import model.Admin;
 import database.JsonDatabaseManager;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class UserService {
     private ArrayList<Instructor> getInstructors() {
         return db.viewInstructors();
     }
+    private ArrayList<Admin> getAdmin() {
+        return db.viewAdmins();
+    }
+
 
     public boolean StudentsEmailExists(String email) {
         for (Student s : getStudents()) {

@@ -96,6 +96,30 @@ public class JsonDatabaseManager {
         }
         return list;
     }
+    public ArrayList<Admin> viewAdmins() {
+        JSONArray arr = readArray(usersFile);
+        ArrayList<Admin> list = new ArrayList<>();
+
+        for (int i = 0; i < arr.length(); i++) {
+            JSONObject obj = arr.getJSONObject(i);
+
+            // Check if this user is an admin
+            if (obj.getString("role").equalsIgnoreCase("admin")) {
+                Admin admin = new Admin(
+                        obj.getString("userId"),
+                        obj.getString("role"),
+                        obj.getString("username"),
+                        obj.getString("email"),
+                        obj.getString("passwordHash")
+                );
+
+                list.add(admin);
+            }
+        }
+
+        return list;
+    }
+
     public void addInstructor(Instructor instructor) {
         JSONArray arr = readArray(usersFile);
 
