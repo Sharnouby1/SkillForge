@@ -1,0 +1,34 @@
+[
+    {
+        "role": "student",
+        "progress": "0%",
+        "userId": "S101",
+        "email": "ahmed@gmail.com",
+        "passwordHash": "pass123",
+        "username": "ahmed"
+    },
+    {
+        "role": "instructor",
+        "userId": "I201",
+        "email": "mohamed@gmail.com",
+        "passwordHash": "pass456",
+        "username": "mohamed"
+    },
+    {
+        "role": "student",
+        "enrolledCourses": ["Maths"],
+        "progress": "0%",
+        "userId": "S80219",
+        "email": "sharnouby@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "Sharnouby"
+    },
+    {
+        "role": "instructor",
+        "createdCourses": [],
+        "userId": "I10345",
+        "email": "instructor@gmail.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "Instructor"
+    }
+]

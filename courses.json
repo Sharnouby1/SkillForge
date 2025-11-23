@@ -38,5 +38,31 @@
                 "isCompleted": false
             }
         ]
+    },
+    {
+        "description": "Integration",
+        "title": "Math 2",
+        "courseID": "C4652",
+        "instructorID": "I10345",
+        "lessons": [
+            {
+                "lessonID": "L23799",
+                "title": "Lesson 1",
+                "content": "Basics",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L11817",
+                "title": "Lesson 2",
+                "content": "Continue Basics",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L14112",
+                "title": "Lesson 3",
+                "content": "Integration by parts",
+                "isCompleted": false
+            }
+        ]
     }
 ]

@@ -54,7 +54,7 @@ public class CourseEditorDialog extends JDialog {
         save.addActionListener(e -> {
             course.setTitle(title.getText());
             course.setDescription(desc.getText());
-            db.updateCourse(course);
+            db.editCourse(course);
             JOptionPane.showMessageDialog(CourseEditorDialog.this, "Saved");
             dispose();
         });

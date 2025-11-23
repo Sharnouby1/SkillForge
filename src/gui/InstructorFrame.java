@@ -22,6 +22,7 @@ public class InstructorFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         init();
+        setVisible(true);
     }
 
     private void init() {
