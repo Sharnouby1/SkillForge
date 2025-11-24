@@ -7,6 +7,7 @@ public class LessonProgress {
     private int attempts;
     private double quizScore;
 
+
     public LessonProgress(String lessonID, boolean isCompleted, int attempts, double quizScore) {
         this.lessonID = lessonID;
         this.isCompleted = isCompleted;
@@ -41,4 +42,6 @@ public class LessonProgress {
     public void setQuizScore(double quizScore) {
         this.quizScore = quizScore;
     }
+
+
 }
