@@ -10,12 +10,15 @@ public class Course {
     private String description;
     private String instructorID;
     private List<Student> students;
+    private String status; // pending || approved || declined
+
 
     public Course(String courseID, String title, String description, String instructorID) {
         this.courseID = courseID;
         this.title = title;
         this.description = description;
         this.instructorID = instructorID;
+        this.status = "pending";
     }
 
     public void setCourseID(String courseID) {
@@ -103,6 +106,18 @@ public class Course {
         return totalCompletions;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    // ---------------- Setters -----------------
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+
     // ---------------- Core Logic -----------------
 
     public void addLesson(Lesson lesson) {
@@ -164,4 +179,6 @@ public class Course {
             }
         }
     }
+
+
 }

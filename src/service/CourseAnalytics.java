@@ -29,7 +29,7 @@ public class CourseAnalytics {
 
             for (Student s : course.getStudents()) {
 
-                LessonProgress lp = s.getLessonProgress(lesson.getLessonID());
+                LessonProgress lp = (LessonProgress) s.getLessonProgress();
 
                 if (lp != null && lp.getAttempts() > 0) {
                     total += lp.getQuizScore();
@@ -57,7 +57,7 @@ public class CourseAnalytics {
             int completed = 0;
 
             for (Student s : course.getStudents()) {
-                LessonProgress lp = s.getLessonProgress(lesson.getLessonID());
+                LessonProgress lp = (LessonProgress) s.getLessonProgress();
                 if (lp != null && lp.isCompleted()) {
                     completed++;
                 }
@@ -83,7 +83,7 @@ public class CourseAnalytics {
             int count = 0;
 
             for (Student s : course.getStudents()) {
-                LessonProgress lp = s.getLessonProgress();
+                LessonProgress lp = (LessonProgress) s.getLessonProgress();
                 if (lp != null) {
                     total += lp.getQuizScore();
                     count++;

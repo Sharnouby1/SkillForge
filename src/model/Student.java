@@ -9,7 +9,7 @@ public class Student extends User {
 
     private List<Course> enrolledCourses;
     private List<LessonProgress> lessonProgressList = new ArrayList<>();
-    public Student(String userId, String name, String email, String password) {
+    public Student(String userId, String name, String email, String password, String passwordHash, ArrayList<Course> courses, String progress) {
         super(userId,"student", name, email, password);
     }
 
@@ -84,5 +84,9 @@ public class Student extends User {
 
     public List<LessonProgress> getLessonProgressList() {
         return lessonProgressList;
+    }
+
+    public boolean getProgress() {
+        return lessonProgressList.isEmpty();
     }
 }

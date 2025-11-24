@@ -149,6 +149,6 @@ public class InstructorFrame extends JFrame {
                 return;
             }
             new InstructorAnalyticsFrame(c);
-        })
+        });
     }
 }

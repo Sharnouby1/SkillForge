@@ -1,6 +1,8 @@
 package service;
 
-public class LessonProgress {
+import java.util.List;
+
+public class LessonProgress  {
 
     private String lessonID;
     private boolean isCompleted;

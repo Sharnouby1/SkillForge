@@ -75,8 +75,8 @@ public class AnalyticsManager {
         lesson.setAverageScore(newAvg);
         lesson.setQuizAttempts(attempts + 1);
 
-        db.saveUsers();
-        db.saveCourses();
+        db.addUser(student);
+        db.editCourse(course);
     }
 
     public CourseAnalytics getCourseAnalytics(String courseId) {
@@ -91,7 +91,7 @@ public class AnalyticsManager {
             totalCompletions += lesson.getCompletedCount();
         }
 
-        return new CourseAnalytics();
+        return new CourseAnalytics(course);
     }
 
     private Student findStudent(String id) {

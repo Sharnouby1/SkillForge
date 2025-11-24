@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.NoSuchAlgorithmException;
+import gui.*; 
 
 import database.JsonDatabaseManager;
 import requirements.Validator;
@@ -24,7 +25,7 @@ public class RegisterFrame extends JFrame {
         setTitle("Welcome");
         setContentPane(Container1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(250,250);
+        setSize(600,500);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);

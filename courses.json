@@ -4,6 +4,7 @@
         "title": "Maths",
         "courseID": "C001",
         "instructorID": "I001",
+        "status": "approved",
         "lessons": [
             {
                 "lessonID": "L001",
@@ -20,10 +21,11 @@
         ]
     },
     {
-        "description": "Basic mathematics course covering algebra, geometry, and trigonometry.",
+        "description": "OOP - UML - Design Patterns - Data Structures",
         "title": "Programming",
         "courseID": "C004",
         "instructorID": "I005",
+        "status": "approved",
         "lessons": [
             {
                 "lessonID": "L003",
@@ -44,6 +46,7 @@
         "title": "Math 2",
         "courseID": "C4652",
         "instructorID": "I10345",
+        "status": "declined",
         "lessons": [
             {
                 "lessonID": "L23799",
