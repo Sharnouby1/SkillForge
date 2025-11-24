@@ -4,7 +4,7 @@ import javax.swing.*;
 import model.*;
 import service.*;
 public class content extends JFrame {
-
+//
         private JPanel container1;
         private JLabel lessonTitle;
     private JTextArea lessonContent;

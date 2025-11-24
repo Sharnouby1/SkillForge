@@ -22,7 +22,9 @@
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value=""/>
+        </properties>
       </component>
       <component id="453f5" class="javax.swing.JButton" binding="takeQuizButton" default-binding="true">
         <constraints>
