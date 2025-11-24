@@ -393,24 +393,49 @@ public class JsonDatabaseManager {
         for (int i = 0; i < arr.length(); i++) {
             JSONObject obj = arr.getJSONObject(i);
 
-            List<Lesson> lessons = new ArrayList<>();
-            JSONArray lesArr = obj.getJSONArray("lessons");
-            for (int j = 0; j < lesArr.length(); j++) {
-                JSONObject l = lesArr.getJSONObject(j);
-                lessons.add(new Lesson(
-                        l.getString("lessonID"),
-                        l.getString("title"),
-                        l.getString("content")
-                ));
-            }
-
             Course c = new Course(
                     obj.getString("courseID"),
                     obj.getString("title"),
                     obj.getString("description"),
                     obj.getString("instructorID")
             );
-            c.setLessons(lessons);
+
+            // قراءة الدروس مع الكويزات
+            JSONArray lesArr = obj.getJSONArray("lessons");
+            for (int j = 0; j < lesArr.length(); j++) {
+                JSONObject l = lesArr.getJSONObject(j);
+                Lesson lesson = new Lesson(
+                        l.getString("lessonID"),
+                        l.getString("title"),
+                        l.getString("content")
+                );
+
+                // قراءة الكويز إذا موجود
+                if (l.has("quiz")) {
+                    JSONObject qz = l.getJSONObject("quiz");
+                    Quiz quiz = new Quiz(
+                            qz.getString("quizId"),
+                            lesson.getLessonID(),
+                            qz.getInt("passingScore"),
+                            qz.getInt("maxAttempts")
+                    );
+                    JSONArray questionsArr = qz.getJSONArray("questions");
+                    for (int k = 0; k < questionsArr.length(); k++) {
+                        JSONObject q = questionsArr.getJSONObject(k);
+                        Question question = new Question(
+                                q.getString("questionId"),
+                                q.getString("text"),
+                                q.getJSONArray("options").toList().stream().map(Object::toString).toList(),
+                                q.getString("correctAnswer")
+                        );
+                        quiz.addQuestion(question);
+                    }
+                    lesson.setQuiz(quiz);
+                }
+
+                c.getLessons().add(lesson);
+            }
+
             list.add(c);
         }
         return list;

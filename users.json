@@ -46,6 +46,48 @@
     },
     {
         "role": "student",
+        "quizAttempts": {"L001": [
+            {
+                "score": 1,
+                "totalQuestions": 2,
+                "quizId": "Q001",
+                "percentage": 50,
+                "questionResults": [
+                    {
+                        "questionId": "Q001-1",
+                        "userAnswer": "public static void main(String[] args)",
+                        "correct": true
+                    },
+                    {
+                        "questionId": "Q001-2",
+                        "userAnswer": "class",
+                        "correct": false
+                    }
+                ],
+                "passed": false,
+                "attemptedAt": "Mon Nov 24 03:34:49 EET 2025"
+            },
+            {
+                "score": 0,
+                "totalQuestions": 2,
+                "quizId": "Q001",
+                "percentage": 0,
+                "questionResults": [
+                    {
+                        "questionId": "Q001-1",
+                        "userAnswer": "public void main(String args[])",
+                        "correct": false
+                    },
+                    {
+                        "questionId": "Q001-2",
+                        "userAnswer": "class",
+                        "correct": false
+                    }
+                ],
+                "passed": false,
+                "attemptedAt": "Mon Nov 24 03:37:26 EET 2025"
+            }
+        ]},
         "enrolledCourses": [
             "Maths",
             "Programming"
@@ -88,6 +130,14 @@
         "progress": "0%",
         "userId": "S37724",
         "email": "z@z.com",
+        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
+        "username": "a"
+    },
+    {
+        "role": "instructor",
+        "createdCourses": [],
+        "userId": "I46401",
+        "email": "a@a.com",
         "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
         "username": "a"
     }

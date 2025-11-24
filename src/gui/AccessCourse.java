@@ -2,7 +2,7 @@ package gui;
 
 import javax.swing.*;
 import database.*;
-import model.Student;
+import model.*;
 import service.AuthService;
 
 import java.awt.event.ActionEvent;
@@ -13,12 +13,13 @@ public class AccessCourse extends JFrame {
     private JPanel container1;
     private JList<String>list1;
     private JButton accessButton;
+    private JButton returnButton;
 
     public AccessCourse() {
         setTitle("Access Course");
         setContentPane(container1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(350, 350);
+        setSize(250, 250);
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
@@ -32,13 +33,34 @@ public class AccessCourse extends JFrame {
         accessButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String selectedCourse = list1.getSelectedValue();
-                if (selectedCourse == null) {
+                String selectedCourseTitle = list1.getSelectedValue();
+                if (selectedCourseTitle == null) {
                     JOptionPane.showMessageDialog(null, "Please select a course first!");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Accessing Course: " + selectedCourse);
+                    // Get Course object from database
+                    List<Course> allCourses = db.viewCourses();
+                    Course selectedCourse = null;
+                    for (Course c : allCourses) {
+                        if (c.getTitle().equalsIgnoreCase(selectedCourseTitle)) {
+                            selectedCourse = c;
+                            break;
+                        }
+                    }
 
+                    if (selectedCourse != null) {
+                        JOptionPane.showMessageDialog(null, "Accessing Course: " + selectedCourse.getTitle());
+                        dispose();
+                        new Lessons(s, selectedCourse, db);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Course not found in database!");
+                    }
                 }
+            }
+        });
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new StudentMenu();
             }
         });
     }
