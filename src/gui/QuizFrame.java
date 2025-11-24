@@ -24,7 +24,7 @@ public class QuizFrame extends JFrame {
         container = new JPanel();
         container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
 
-//
+
         for (Question q : lesson.getQuiz().getQuestions()) {
             JPanel panel = new JPanel();
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
