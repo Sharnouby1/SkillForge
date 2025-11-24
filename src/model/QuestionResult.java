@@ -1,7 +1,7 @@
 // QuestionResult.java
 package model;
 
-public class QuestionResult {  // <- public هنا
+public class QuestionResult {
     private Question question;
     private String userAnswer;
     private boolean correct;

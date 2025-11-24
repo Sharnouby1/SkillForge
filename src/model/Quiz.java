@@ -2,7 +2,7 @@ package model;
 
 import java.util.List;
 import java.util.ArrayList;
-//
+
 public class Quiz {
     private String quizId;
     private String lessonId;

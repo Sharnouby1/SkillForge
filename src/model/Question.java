@@ -1,4 +1,4 @@
-// Question.java
+
 package model;
 import java.util.List;
 
