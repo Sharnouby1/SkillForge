@@ -21,7 +21,7 @@ public class Lessons extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         setResizable(false);
-
+//
         comboBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
