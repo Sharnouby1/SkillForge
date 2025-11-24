@@ -8,7 +8,7 @@ import service.AuthService;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
-
+//
 public class AccessCourse extends JFrame {
     private JPanel container1;
     private JList<String>list1;
