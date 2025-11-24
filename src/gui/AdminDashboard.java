@@ -7,47 +7,55 @@ import model.Lesson;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class AdminDashboard {
+public class AdminDashboard extends JFrame {
 
     private JPanel mainPanel;
-    private JComboBox<String> coursesCombo;     // first combo box (Pending Courses)
-    private JTextArea courseTitle;              // title text area
-    private JTextArea description;              // description text area
-    private JComboBox<String> lessons;          // lessons combo box
+    private JComboBox<String> coursesCombo;
+    private JTextArea courseTitle;
+    private JTextArea description;
+    private JComboBox<String> lessons;
     private JButton logoutButton;
     private JButton approveButton;
     private JButton declineButton;
 
-    private ArrayList<Course> allCourses;        // loaded list of courses
+    private ArrayList<Course> allCourses;
     private JsonDatabaseManager db;
 
     public AdminDashboard() {
 
-        db = new JsonDatabaseManager("users.json", "courses.json");
+        // GUI Designer initialization
+        setContentPane(mainPanel);
+        setTitle("Admin Dashboard");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700, 450);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
+        // Load DB
+        db = new JsonDatabaseManager("users.json", "courses.json");
         allCourses = db.viewCourses();
 
+        // Load courses into combobox
         loadCoursesIntoCombo();
 
+        // Listeners
         coursesCombo.addActionListener(e -> updateCourseDisplay());
-
         approveButton.addActionListener(e -> approveSelected());
-
         declineButton.addActionListener(e -> declineSelected());
-
         logoutButton.addActionListener(e -> {
-            JFrame currentFrame = (JFrame) SwingUtilities.getWindowAncestor(logoutButton);
-            RegisterFrame registerFrame = new RegisterFrame();
-            registerFrame.setVisible(true);
-            currentFrame.dispose();
+            dispose();
+            new RegisterFrame();
         });
+
+        setVisible(true);
     }
 
+    // Load courses into course combobox
     private void loadCoursesIntoCombo() {
         coursesCombo.removeAllItems();
 
         for (Course c : allCourses) {
-            coursesCombo.addItem(c.getTitle());     // show title only
+            coursesCombo.addItem(c.getTitle());
         }
 
         if (coursesCombo.getItemCount() > 0) {
@@ -56,6 +64,7 @@ public class AdminDashboard {
         }
     }
 
+    // Update course details when selected
     private void updateCourseDisplay() {
         int index = coursesCombo.getSelectedIndex();
         if (index < 0) return;
@@ -67,7 +76,7 @@ public class AdminDashboard {
 
         lessons.removeAllItems();
         for (Lesson l : selected.getLessons()) {
-            lessons.addItem(l.getTitle()); // only title for now
+            lessons.addItem(l.getTitle());
         }
     }
 
@@ -81,7 +90,7 @@ public class AdminDashboard {
         selected.setPending(false);
         selected.setRejected(false);
 
-        db.updateCourse(selected);
+        db.editCourse(selected);
 
         JOptionPane.showMessageDialog(mainPanel,
                 "Course '" + selected.getTitle() + "' has been approved.");
@@ -97,13 +106,10 @@ public class AdminDashboard {
         selected.setPending(false);
         selected.setApproved(false);
 
-        db.updateCourse(selected);
+        db.editCourse(selected);
 
         JOptionPane.showMessageDialog(mainPanel,
                 "Course '" + selected.getTitle() + "' has been declined.");
     }
 
-    public JPanel getMainPanel() {
-        return mainPanel;
-    }
 }

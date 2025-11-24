@@ -106,10 +106,10 @@ else if(studentRadioButton.isSelected())
                 {
                     try {
                         if(AuthService.LoginForAdmin(email.getText(),passwordField1.getText())) {
-                            dispose();
                             JOptionPane.showMessageDialog(null, "Login Successful");
                             JsonDatabaseManager db = new JsonDatabaseManager("users.json","courses.json");
                             UserService us = new UserService();
+                            dispose();
                             new AdminDashboard();
                         }
                         else {

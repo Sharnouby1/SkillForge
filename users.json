@@ -57,13 +57,6 @@
         "username": "q"
     },
     {
-        "role": "admin",
-        "userId": "A001",
-        "email": "admin@example.com",
-        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-        "username": "admin"
-    },
-    {
         "role": "student",
         "enrolledCourses": [
             "Course1",
@@ -76,19 +69,17 @@
         "username": "student1"
     },
     {
-        "role": "admin",
-        "userId": "I001",
-        "email": "instructor1@example.com",
-        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-        "username": "instructor1"
-    },
-    {
-        "role": "admin",
-        "enrolledCourses": [],
-        "progress": "0%",
-        "userId": "S37724",
-        "email": "z@z.com",
-        "passwordHash": "ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
-        "username": "a"
-    }
+        "role": "instructor",
+        "createdCourses": [],
+        "userId": "I6622",
+        "email": "in@in.com",
+        "passwordHash": "924592b9b103f14f833faafb67f480691f01988aa457c0061769f58cd47311bc",
+        "username": "ins"
+    },{
+  "userId": "A001",
+  "role": "admin",
+  "username": "MasterAdmin",
+  "email": "admin@example.com",
+  "passwordHash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8"
+}
 ]
