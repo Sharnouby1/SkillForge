@@ -2,19 +2,23 @@ package model;
 
 public class Lesson {
 
-
     private String lessonID;
     private String title;
     private String content;
-    private boolean isCompleted;
-
+    private boolean isCompleted = false;
+    private int completedCount = 0;
+    private double averageScore = 0;
+    private int quizAttempts = 0;
 
     public Lesson(String lessonID, String title, String content) {
         this.lessonID = lessonID;
         this.title = title;
         this.content = content;
-        this.isCompleted = false;
     }
+
+    // ============================================================
+    // GETTERS & SETTERS
+    // ============================================================
 
     public String getLessonID() {
         return lessonID;
@@ -40,12 +44,49 @@ public class Lesson {
         this.content = content;
     }
 
+    // ============================================================
+    // ANALYTICS FIELDS
+    // ============================================================
+
+    public int getCompletedCount() {
+        return completedCount;
+    }
+
+    public void increaseCompletedCount() {
+        this.completedCount++;
+    }
+
+    public double getAverageScore() {
+        return averageScore;
+    }
+
+    public int getQuizAttempts() {
+        return quizAttempts;
+    }
+
+    // Update average using running formula (no maps)
+    public void updateQuizAnalytics(double newScore) {
+        quizAttempts++;
+        averageScore = ((averageScore * (quizAttempts - 1)) + newScore) / quizAttempts;
+    }
+
+    public void setQuizAttempts(int quizAttempts) {
+        this.quizAttempts = quizAttempts;
+    }
+
+    public void setCompletedCount(int completedCount) {
+        this.completedCount = completedCount;
+    }
+
+    public void setAverageScore(double averageScore) {
+        this.averageScore = averageScore;
+    }
+
     public boolean isCompleted() {
         return isCompleted;
     }
 
     public void setCompleted() {
-        this.isCompleted = true;
+        isCompleted = true;
     }
 }
-

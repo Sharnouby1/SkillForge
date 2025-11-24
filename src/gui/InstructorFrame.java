@@ -57,11 +57,13 @@ public class InstructorFrame extends JFrame {
         JButton btnCreate = new JButton("➕ Create Course");
         JButton btnEdit = new JButton("✏️ Edit Course");
         JButton btnViewStudents = new JButton("👥 View Enrolled Students");
+        JButton btnAnalytics = new JButton("Analytics");
         JButton logoutButton = new JButton("🚪 Logout");
 
         buttonPanel.add(btnCreate);
         buttonPanel.add(btnEdit);
         buttonPanel.add(btnViewStudents);
+        buttonPanel.add(btnAnalytics);
         buttonPanel.add(logoutButton);
 
         mainPanel.add(new JScrollPane(list), BorderLayout.CENTER);
@@ -139,5 +141,14 @@ public class InstructorFrame extends JFrame {
                 new RegisterFrame();
             }
         });
+
+        btnAnalytics.addActionListener(e -> {
+            Course c = list.getSelectedValue();
+            if (c == null) {
+                JOptionPane.showMessageDialog(this, "Select a course First");
+                return;
+            }
+            new InstructorAnalyticsFrame(c);
+        })
     }
 }
