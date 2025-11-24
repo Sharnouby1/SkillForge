@@ -1,9 +1,8 @@
-// QuizResult.java
 package model;
 import java.util.Date;
 import java.util.List;
 
-public class QuizResult {   // <- public هنا
+public class QuizResult {
     private String quizId;
     private int score;
     private int totalQuestions;

@@ -1,4 +1,3 @@
-// QuestionResult.java
 package model;
 
 public class QuestionResult {
@@ -11,7 +10,7 @@ public class QuestionResult {
         this.userAnswer = userAnswer;
         this.correct = correct;
     }
-//
+    //
     public Question getQuestion() { return question; }
     public String getUserAnswer() { return userAnswer; }
     public boolean isCorrect() { return correct; }

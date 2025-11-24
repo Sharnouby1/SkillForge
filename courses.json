@@ -1,70 +1,71 @@
 [
-  {
-    "courseID": "C001",
-    "title": "Maths",
-    "description": "Introduction to Java programming",
-    "instructorID": "I001",
-    "lessons": [
-      {
-        "lessonID": "L001",
-        "title": "Lesson1",
-        "content": "Learn about Java syntax and structure",
-        "isCompleted": false,
-        "quiz": {
-          "quizId": "Q001",
-          "passingScore": 70,
-          "maxAttempts": 3,
-          "questions": [
+    {
+        "description": "Basic mathematics course covering algebra, geometry, and trigonometry.",
+        "title": "Maths",
+        "courseID": "C001",
+        "instructorID": "I001",
+        "status": "approved",
+        "lessons": [
             {
-              "questionId": "Q001-1",
-              "text": "What is the correct syntax for main method in Java?",
-              "options": [
-                "public static void main(String[] args)",
-                "public void main(String args[])",
-                "static void main(String[] args)",
-                "void main(String args)"
-              ],
-              "correctAnswer": "public static void main(String[] args)"
+                "lessonID": "L001",
+                "title": "Introduction to Algebra",
+                "content": "Basics of algebraic expressions and equations.",
+                "isCompleted": false
             },
             {
-              "questionId": "Q001-2",
-              "text": "Which of these is a valid variable name?",
-              "options": [
-                "2variable",
-                "myVar",
-                "class",
-                "public"
-              ],
-              "correctAnswer": "myVar"
+                "lessonID": "L002",
+                "title": "Geometry Basics",
+                "content": "Understanding shapes, angles, and geometric rules.",
+                "isCompleted": false
             }
-          ]
-        }
-      },
-      {
-        "lessonID": "L002",
-        "title": "Lesson2",
-        "content": "Understanding variables, data types and operators",
-        "isCompleted": false,
-        "quiz": {
-          "quizId": "Q002",
-          "passingScore": 70,
-          "maxAttempts": 3,
-          "questions": [
+        ]
+    },
+    {
+        "description": "OOP - UML - Design Patterns - Data Structures",
+        "title": "Programming",
+        "courseID": "C004",
+        "instructorID": "I005",
+        "status": "approved",
+        "lessons": [
             {
-              "questionId": "Q002-1",
-              "text": "Which data type is used to store decimal numbers?",
-              "options": ["int", "float", "char", "boolean"],
-              "correctAnswer": "float"
+                "lessonID": "L003",
+                "title": "Introduction to Algebra",
+                "content": "Basics of algebraic expressions and equations.",
+                "isCompleted": false
             },
             {
-              "questionId": "Q002-2",
-              "text": "What is the default value of boolean in Java?",
-              "options": ["true", "false", "0", "null"],
-              "correctAnswer": "false"
+                "lessonID": "L006",
+                "title": "Geometry Basics",
+                "content": "Understanding shapes, angles, and geometric rules.",
+                "isCompleted": false
             }
-          ]
-        }
-      }
-    ]
-  }
+        ]
+    },
+    {
+        "description": "Integration",
+        "title": "Math 2",
+        "courseID": "C4652",
+        "instructorID": "I10345",
+        "status": "declined",
+        "lessons": [
+            {
+                "lessonID": "L23799",
+                "title": "Lesson 1",
+                "content": "Basics",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L11817",
+                "title": "Lesson 2",
+                "content": "Continue Basics",
+                "isCompleted": false
+            },
+            {
+                "lessonID": "L14112",
+                "title": "Lesson 3",
+                "content": "Integration by parts",
+                "isCompleted": false
+            }
+        ]
+    }
 ]

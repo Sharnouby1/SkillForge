@@ -103,7 +103,6 @@ public class JsonDatabaseManager {
         for (int i = 0; i < arr.length(); i++) {
             JSONObject obj = arr.getJSONObject(i);
 
-            // Check if this user is an admin
             if (obj.getString("role").equalsIgnoreCase("admin")) {
                 Admin admin = new Admin(
                         obj.getString("userId"),
@@ -112,13 +111,12 @@ public class JsonDatabaseManager {
                         obj.getString("email"),
                         obj.getString("passwordHash")
                 );
-
                 list.add(admin);
             }
         }
-
         return list;
     }
+
 
     public void addInstructor(Instructor instructor) {
         JSONArray arr = readArray(usersFile);
@@ -235,6 +233,7 @@ public class JsonDatabaseManager {
         obj.put("title", c.getTitle());
         obj.put("description", c.getDescription());
         obj.put("instructorID", c.getInstructorID());
+        obj.put("status", c.getStatus());
 
         JSONArray lessonsArr = new JSONArray();
         if (c.getLessons() != null) {
@@ -479,6 +478,79 @@ public class JsonDatabaseManager {
                 courses.set(i, updated);
                 break;
             }
+        }}
+
+        public void recordQuizAttempt(String studentId, String lessonId, Quiz quiz, QuizResult result) {
+            try {
+
+                JSONArray usersArr = readArray(usersFile);
+
+                for (int i = 0; i < usersArr.length(); i++) {
+                    JSONObject studentObj = usersArr.getJSONObject(i);
+
+                    if (studentObj.getString("userId").equals(studentId) &&
+                            studentObj.getString("role").equalsIgnoreCase("student")) {
+
+
+                        JSONObject quizAttemptsObj = studentObj.optJSONObject("quizAttempts");
+                        if (quizAttemptsObj == null) {
+                            quizAttemptsObj = new JSONObject();
+                        }
+
+                        JSONArray attemptsArr = quizAttemptsObj.optJSONArray(lessonId);
+                        if (attemptsArr == null) {
+                            attemptsArr = new JSONArray();
+                        }
+
+
+                        if (attemptsArr.length() >= quiz.getMaxAttempts()) {
+                            throw new IllegalStateException("Max attempts reached!");
+                        }
+
+
+                        JSONObject attemptObj = new JSONObject();
+                        attemptObj.put("quizId", result.getQuizId());
+                        attemptObj.put("score", result.getScore());
+                        attemptObj.put("totalQuestions", result.getTotalQuestions());
+                        attemptObj.put("percentage", result.getPercentage());
+                        attemptObj.put("passed", result.isPassed());
+                        attemptObj.put("attemptedAt", result.getAttemptedAt().toString());
+
+
+                        JSONArray qResultsArr = new JSONArray();
+                        if (result.getQuestionResults() != null) {
+                            for (QuestionResult qr : result.getQuestionResults()) {
+                                JSONObject qrObj = new JSONObject();
+
+
+                                qrObj.put("questionId", qr.getQuestion().getQuestionId());
+                                qrObj.put("userAnswer", qr.getUserAnswer());
+                                qrObj.put("correct", qr.isCorrect());
+
+                                qResultsArr.put(qrObj);
+                            }
+                        }
+
+                        attemptObj.put("questionResults", qResultsArr);
+
+
+                        attemptsArr.put(attemptObj);
+                        quizAttemptsObj.put(lessonId, attemptsArr);
+                        studentObj.put("quizAttempts", quizAttemptsObj);
+
+
+                        writeArray(usersFile, usersArr);
+
+                        System.out.println("Success");
+                        break;
+                    }
+                }
+
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-}
+
