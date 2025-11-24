@@ -2,7 +2,7 @@
 package model;
 import java.util.List;
 
-public class Question {   // <- public هنا
+public class Question {   //
     private String questionId;
     private String text;
     private List<String> options;

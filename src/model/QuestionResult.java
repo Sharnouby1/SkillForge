@@ -11,7 +11,7 @@ public class QuestionResult {  // <- public هنا
         this.userAnswer = userAnswer;
         this.correct = correct;
     }
-
+//
     public Question getQuestion() { return question; }
     public String getUserAnswer() { return userAnswer; }
     public boolean isCorrect() { return correct; }
